@@ -50,10 +50,27 @@ const play = (c) => {
   SaveGame();
 };
 
+const winPercentage = computed(() => {
+  const total = wins.value + draws.value + losses.value;
+  return total ? (wins.value / total) * 100 : 0;
+});
+
 const SaveGame = () => {
   localStorage.setItem("wins", wins.value);
   localStorage.setItem("draws", draws.value);
   localStorage.setItem("losses", losses.value);
+};
+
+const LoadGame = () => {
+  wins.value = parseInt(localStorage.getItem("wins")) || 0;
+  draws.value = parseInt(localStorage.getItem("draws")) || 0;
+  losses.value = parseInt(localStorage.getItem("losses")) || 0;
+};
+
+const ResetRound = () => {
+  choice.value = null;
+  computerChoice.value = null;
+  verdict.value = null;
 };
 </script>
 
