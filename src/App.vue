@@ -26,6 +26,14 @@ const outcomes = {
     scissors: "draw",
   },
 };
+
+const play = (c) => {
+  choice.value = c;
+
+  const choices = ["rock", "paper", "scissors"];
+  const random = Math.floor(Math.random() * choices.length);
+  computerChoice.value = choices[random];
+};
 </script>
 
 <template>
