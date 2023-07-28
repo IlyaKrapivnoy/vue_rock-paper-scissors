@@ -98,6 +98,9 @@ const showPauseScreen = ref(false);
 const removePause = () => {
   showPauseScreen.value = false;
 };
+const showPause = () => {
+  showPauseScreen.value = true;
+};
 
 const currentYear = new Date().getFullYear();
 </script>
@@ -159,8 +162,18 @@ const currentYear = new Date().getFullYear();
 
         <div class="text-lg">Win rate: {{ Math.round(winPercentage) }}%</div>
 
-        <button @click="startOver" class="bg-red-500 text-lg py-2 px-4 mt-4">
+        <button
+          @click="startOver"
+          class="bg-red-500 text-lg py-2 px-4 mt-4 w-[160px]"
+        >
           Start Over
+        </button>
+
+        <button
+          @click="showPause"
+          class="bg-blue-500 text-lg py-2 px-4 mt-4 w-[160px]"
+        >
+          Pause
         </button>
 
         <div v-if="showPauseScreen" class="text-3xl mt-12">
