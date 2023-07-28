@@ -73,6 +73,13 @@ const ResetRound = () => {
   verdict.value = null;
 };
 
+const startOver = () => {
+  wins.value = 0;
+  draws.value = 0;
+  losses.value = 0;
+  SaveGame();
+};
+
 onMounted(() => {
   LoadGame();
 
@@ -141,6 +148,10 @@ const currentYear = new Date().getFullYear();
       </div>
 
       <div class="text-lg">Win rate: {{ Math.round(winPercentage) }}%</div>
+
+      <button @click="startOver" class="bg-red-500 text-lg py-2 px-4 mt-4">
+        Start Over
+      </button>
     </main>
 
     <footer class="container mx-auto p-6">
