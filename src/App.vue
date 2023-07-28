@@ -86,9 +86,18 @@ onMounted(() => {
   window.addEventListener("keypress", (e) => {
     if (e.key === "r") {
       ResetRound();
+    } else if (e.key === "o") {
+      startOver();
+    } else if (e.key === "p") {
+      showPauseScreen.value = true;
     }
   });
 });
+
+const showPauseScreen = ref(false);
+const removePause = () => {
+  showPauseScreen.value = false;
+};
 
 const currentYear = new Date().getFullYear();
 </script>
@@ -100,58 +109,80 @@ const currentYear = new Date().getFullYear();
     </header>
 
     <main class="container mx-auto p-6 flex-1">
-      <div
-        v-if="choice === null"
-        class="flex items-center justify-center -mx-6"
-      >
-        <button
-          @click="play('rock')"
-          class="bg-white rounded-full shadow-lg w-64 p-12 mx-6 transition-colors duration-300 hover:bg-pink-500"
+      <div v-if="!showPauseScreen">
+        <div
+          v-if="choice === null"
+          class="flex items-center justify-center -mx-6"
         >
-          <img src="./assets/RockIcon.svg" alt="Rock" class="w-full" />
-        </button>
+          <button
+            @click="play('rock')"
+            class="bg-white rounded-full shadow-lg w-64 p-12 mx-6 transition-colors duration-300 hover:bg-pink-500"
+          >
+            <img src="./assets/RockIcon.svg" alt="Rock" class="w-full" />
+          </button>
 
-        <button
-          @click="play('paper')"
-          class="bg-white rounded-full shadow-lg w-64 p-12 mx-6 transition-colors duration-300 hover:bg-green-500"
-        >
-          <img src="./assets/PaperIcon.svg" alt="Paper" />
-        </button>
+          <button
+            @click="play('paper')"
+            class="bg-white rounded-full shadow-lg w-64 p-12 mx-6 transition-colors duration-300 hover:bg-green-500"
+          >
+            <img src="./assets/PaperIcon.svg" alt="Paper" />
+          </button>
 
-        <button
-          @click="play('scissors')"
-          class="bg-white rounded-full shadow-lg w-64 p-12 mx-6 transition-colors duration-300 hover:bg-yellow-500"
-        >
-          <img src="./assets/ScissorsIcon.svg" alt="Scissors" />
-        </button>
-      </div>
-
-      <div v-else>
-        <div class="text-3xl mb-4">
-          You picked <span class="text-pink-500">{{ choice }}</span>
-        </div>
-        <div class="text-3xl mb-4">
-          The computer picked
-          <span class="text-green-500">{{ computerChoice }}</span>
-        </div>
-        <div class="text-6xl mb-12">
-          {{ verdict }}
+          <button
+            @click="play('scissors')"
+            class="bg-white rounded-full shadow-lg w-64 p-12 mx-6 transition-colors duration-300 hover:bg-yellow-500"
+          >
+            <img src="./assets/ScissorsIcon.svg" alt="Scissors" />
+          </button>
         </div>
 
-        <button @click="ResetRound" class="bg-pink-500 text-lg py-2 px-4">
-          Reset
+        <div v-else>
+          <div class="text-3xl mb-4">
+            You picked <span class="text-pink-500">{{ choice }}</span>
+          </div>
+          <div class="text-3xl mb-4">
+            The computer picked
+            <span class="text-green-500">{{ computerChoice }}</span>
+          </div>
+          <div class="text-6xl mb-12">
+            {{ verdict }}
+          </div>
+
+          <button @click="ResetRound" class="bg-pink-500 text-lg py-2 px-4">
+            Reset
+          </button>
+        </div>
+
+        <div class="mt-12 text-3xl mb-4">
+          {{ wins }} : {{ draws }} : {{ losses }}
+        </div>
+
+        <div class="text-lg">Win rate: {{ Math.round(winPercentage) }}%</div>
+
+        <button @click="startOver" class="bg-red-500 text-lg py-2 px-4 mt-4">
+          Start Over
+        </button>
+
+        <div v-if="showPauseScreen" class="text-3xl mt-12">
+          <p>This is the Pause Screen!</p>
+          <button
+            @click="resumeGame"
+            class="bg-green-500 text-lg py-2 px-4 mt-4"
+          >
+            Resume
+          </button>
+        </div>
+      </div>
+
+      <div v-if="showPauseScreen" class="text-3xl mt-12">
+        <p>This is the Pause Screen!</p>
+        <button
+          @click="removePause"
+          class="bg-green-500 text-lg py-2 px-4 mt-4"
+        >
+          Play Again
         </button>
       </div>
-
-      <div class="mt-12 text-3xl mb-4">
-        {{ wins }} : {{ draws }} : {{ losses }}
-      </div>
-
-      <div class="text-lg">Win rate: {{ Math.round(winPercentage) }}%</div>
-
-      <button @click="startOver" class="bg-red-500 text-lg py-2 px-4 mt-4">
-        Start Over
-      </button>
     </main>
 
     <footer class="container mx-auto p-6">
