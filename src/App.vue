@@ -72,8 +72,22 @@ const ResetRound = () => {
   computerChoice.value = null;
   verdict.value = null;
 };
+
+onMounted(() => {
+  LoadGame();
+
+  window.addEventListener("keypress", (e) => {
+    if (e.key === "r") {
+      ResetRound();
+    }
+  });
+});
 </script>
 
 <template>
-  <h2 class="text-red-700">Hello, World!</h2>
+  <div class="bg-gray-700 text-white text-center min-h-screen flex flex-col">
+    <header class="container mx-auto p-6">
+      <h1 class="text-4xl font-bold">Rock, Paper, Scissors!</h1>
+    </header>
+  </div>
 </template>
