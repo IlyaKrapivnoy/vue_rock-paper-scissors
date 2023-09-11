@@ -51,9 +51,10 @@
           />
         </div>
 
-        <div class="mt-12 text-3xl mb-4">
-          {{ wins }} : {{ draws }} : {{ losses }}
-        </div>
+        <Message
+          :mainText="`${wins} : ${draws} : ${losses}`"
+          :commonStyles="`mt-12 text-3xl mb-4`"
+        />
 
         <Message
           :preText="`Win rate:`"
