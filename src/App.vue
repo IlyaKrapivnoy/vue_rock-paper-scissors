@@ -29,28 +29,37 @@
         </div>
 
         <div v-else>
-          <div class="text-3xl mb-4">
-            You picked <span class="text-pink-500">{{ choice }}</span>
-          </div>
-          <div class="text-3xl mb-4">
-            The computer picked
-            <span class="text-green-500">{{ computerChoice }}</span>
-          </div>
-          <div class="text-6xl mb-12">
-            {{ verdict }}
-          </div>
+          <Message
+            :preText="`You picked`"
+            :mainText="choice"
+            :commonStyles="`text-3xl mb-4`"
+            :mainStyles="`text-pink-500`"
+          />
+          <Message
+            :preText="`The computer picked`"
+            :mainText="computerChoice"
+            :afterText="`pppp`"
+            :commonStyles="`text-3xl mb-4`"
+            :mainStyles="`text-green-500`"
+          />
+          <Message :mainText="verdict" :mainStyles="`text-6xl mb-12`" />
 
-          <button @click="ResetRound" class="bg-pink-500 text-lg py-2 px-4">
-            Reset
-          </button>
+          <ReusableButton
+            label="Reset"
+            :onClick="ResetRound"
+            customClass="bg-pink-500 text-lg py-2 px-4"
+          />
         </div>
 
         <div class="mt-12 text-3xl mb-4">
           {{ wins }} : {{ draws }} : {{ losses }}
         </div>
 
-        <div class="text-lg">Win rate: {{ Math.round(winPercentage) }}%</div>
-
+        <Message
+          :preText="`Win rate:`"
+          :mainText="`${Math.round(winPercentage)}%`"
+          :commonStyles="`text-lg`"
+        />
         <ReusableButton
           label="Start Over"
           :onClick="startOver"
@@ -64,8 +73,11 @@
         />
       </div>
 
-      <div v-if="showPauseScreen" class="text-3xl mt-12">
-        <p>This is the Pause Screen!</p>
+      <div v-if="showPauseScreen" class="mt-12">
+        <Message
+          :mainText="`This is the Pause Screen!`"
+          :mainStyles="`text-3xl`"
+        />
         <ReusableButton
           label="Play Again"
           :onClick="removePause"
@@ -80,6 +92,7 @@
 import { ref, computed, onMounted } from "vue";
 import ReusableButton from "./components/main/ReusableButton.vue";
 import Layout from "./components/layout/Layout.vue";
+import Message from "./components/main/Message.vue";
 
 const wins = ref(0);
 const draws = ref(0);
