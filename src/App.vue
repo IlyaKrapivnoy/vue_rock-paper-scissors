@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
+import Header from "./components/layout/Header.vue";
 
 const wins = ref(0);
 const draws = ref(0);
@@ -107,9 +108,7 @@ const currentYear = new Date().getFullYear();
 
 <template>
   <div class="bg-gray-700 text-white text-center min-h-screen flex flex-col">
-    <header class="container mx-auto p-6">
-      <h1 class="text-4xl font-bold">Rock, Paper, Scissors!</h1>
-    </header>
+    <Header :title="`Rock, Paper, Scissors!`" />
 
     <main class="container mx-auto p-6 flex-1">
       <div v-if="!showPauseScreen">
@@ -203,5 +202,3 @@ const currentYear = new Date().getFullYear();
     </footer>
   </div>
 </template>
-
-<style></style>
