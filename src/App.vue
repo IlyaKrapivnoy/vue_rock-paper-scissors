@@ -53,39 +53,26 @@
 
         <div class="text-lg">Win rate: {{ Math.round(winPercentage) }}%</div>
 
-        <button
-          @click="startOver"
-          class="bg-red-500 text-lg py-2 px-4 mt-4 w-[160px]"
-        >
-          Start Over
-        </button>
+        <ReusableButton
+          label="Start Over"
+          :onClick="startOver"
+          customClass="bg-red-500 text-lg py-2 px-4 mt-4 w-[160px]"
+        />
 
-        <button
-          @click="showPause"
-          class="bg-blue-500 text-lg py-2 px-4 mt-4 w-[160px]"
-        >
-          Pause
-        </button>
-
-        <div v-if="showPauseScreen" class="text-3xl mt-12">
-          <p>This is the Pause Screen!</p>
-          <button
-            @click="resumeGame"
-            class="bg-green-500 text-lg py-2 px-4 mt-4"
-          >
-            Resume
-          </button>
-        </div>
+        <ReusableButton
+          label="Pause"
+          :onClick="showPause"
+          customClass="bg-blue-500 text-lg py-2 px-4 mt-4 w-[160px]"
+        />
       </div>
 
       <div v-if="showPauseScreen" class="text-3xl mt-12">
         <p>This is the Pause Screen!</p>
-        <button
-          @click="removePause"
-          class="bg-green-500 text-lg py-2 px-4 mt-4"
-        >
-          Play Again
-        </button>
+        <ReusableButton
+          label="Play Again"
+          :onClick="removePause"
+          customClass="bg-green-500 text-lg py-2 px-4 mt-4"
+        />
       </div>
     </main>
 
@@ -97,6 +84,7 @@
 import { ref, computed, onMounted } from "vue";
 import Header from "./components/layout/Header.vue";
 import Footer from "./components/layout/Footer.vue";
+import ReusableButton from "./components/main/ReusableButton.vue";
 
 const wins = ref(0);
 const draws = ref(0);
