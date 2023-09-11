@@ -46,8 +46,8 @@
 
           <ReusableButton
             label="Reset"
-            :onClick="ResetRound"
-            customClass="bg-pink-500 text-lg py-2 px-4"
+            :onClick="resetRound"
+            customClass="bg-pink-500 text-lg py-2 px-4 mt-12"
           />
         </div>
 
@@ -94,6 +94,7 @@ import { ref, computed, onMounted } from "vue";
 import ReusableButton from "./components/main/ReusableButton.vue";
 import Layout from "./components/layout/Layout.vue";
 import Message from "./components/main/Message.vue";
+import { outcomes } from "./data/outcomes.js";
 
 const wins = ref(0);
 const draws = ref(0);
@@ -102,24 +103,6 @@ const losses = ref(0);
 const choice = ref(null);
 const computerChoice = ref(null);
 const verdict = ref(null);
-
-const outcomes = {
-  rock: {
-    rock: "draw",
-    paper: "loss",
-    scissors: "win",
-  },
-  paper: {
-    rock: "win",
-    paper: "draw",
-    scissors: "loss",
-  },
-  scissors: {
-    rock: "loss",
-    paper: "win",
-    scissors: "draw",
-  },
-};
 
 const play = (c) => {
   choice.value = c;
@@ -161,7 +144,7 @@ const LoadGame = () => {
   losses.value = parseInt(localStorage.getItem("losses")) || 0;
 };
 
-const ResetRound = () => {
+const resetRound = () => {
   choice.value = null;
   computerChoice.value = null;
   verdict.value = null;
@@ -179,7 +162,7 @@ onMounted(() => {
 
   window.addEventListener("keypress", (e) => {
     if (e.key === "r") {
-      ResetRound();
+      resetRound();
     } else if (e.key === "o") {
       startOver();
     } else if (e.key === "p") {
