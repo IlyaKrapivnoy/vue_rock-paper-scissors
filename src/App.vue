@@ -1,7 +1,5 @@
 <template>
-  <div class="bg-gray-700 text-white text-center min-h-screen flex flex-col">
-    <Header :title="`Rock, Paper, Scissors!`" />
-
+  <Layout>
     <main class="container mx-auto p-6 flex-1">
       <div v-if="!showPauseScreen">
         <div
@@ -75,16 +73,13 @@
         />
       </div>
     </main>
-
-    <Footer />
-  </div>
+  </Layout>
 </template>
 
 <script setup>
 import { ref, computed, onMounted } from "vue";
-import Header from "./components/layout/Header.vue";
-import Footer from "./components/layout/Footer.vue";
 import ReusableButton from "./components/main/ReusableButton.vue";
+import Layout from "./components/layout/Layout.vue";
 
 const wins = ref(0);
 const draws = ref(0);
