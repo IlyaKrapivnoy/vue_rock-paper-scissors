@@ -6,26 +6,26 @@
           v-if="choice === null"
           class="flex items-center justify-center -mx-6"
         >
-          <button
-            @click="play('rock')"
-            class="bg-white rounded-full shadow-lg w-64 p-12 mx-6 transition-colors duration-300 hover:bg-pink-500"
-          >
-            <img src="./assets/RockIcon.svg" alt="Rock" class="w-full" />
-          </button>
+          <ReusableButton
+            :onClick="() => play('rock')"
+            customClass="bg-white rounded-full shadow-lg w-64 p-12 mx-6 transition-colors duration-300 hover:bg-pink-500"
+            img="./src/assets/RockIcon.svg"
+            alt="Rock"
+          />
 
-          <button
-            @click="play('paper')"
-            class="bg-white rounded-full shadow-lg w-64 p-12 mx-6 transition-colors duration-300 hover:bg-green-500"
-          >
-            <img src="./assets/PaperIcon.svg" alt="Paper" />
-          </button>
+          <ReusableButton
+            :onClick="() => play('paper')"
+            customClass="bg-white rounded-full shadow-lg w-64 p-12 mx-6 transition-colors duration-300 hover:bg-green-500"
+            img="./src/assets/PaperIcon.svg"
+            alt="Paper"
+          />
 
-          <button
-            @click="play('scissors')"
-            class="bg-white rounded-full shadow-lg w-64 p-12 mx-6 transition-colors duration-300 hover:bg-yellow-500"
-          >
-            <img src="./assets/ScissorsIcon.svg" alt="Scissors" />
-          </button>
+          <ReusableButton
+            :onClick="() => play('scissors')"
+            customClass="bg-white rounded-full shadow-lg w-64 p-12 mx-6 transition-colors duration-300 hover:bg-yellow-500"
+            img="./src/assets/ScissorsIcon.svg"
+            alt="Scissors"
+          />
         </div>
 
         <div v-else>
@@ -38,7 +38,6 @@
           <Message
             :preText="`The computer picked`"
             :mainText="computerChoice"
-            :afterText="`pppp`"
             :commonStyles="`text-3xl mb-4`"
             :mainStyles="`text-green-500`"
           />
