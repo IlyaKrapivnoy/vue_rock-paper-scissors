@@ -146,7 +146,7 @@ onMounted(() => {
     } else if (e.key === "o") {
       startOver();
     } else if (e.key === "p") {
-      props.showPauseScreen.value = true;
+      props.isShowPauseScreen.value = true;
     }
   });
 });
@@ -161,6 +161,6 @@ const props = defineProps({
   choice: String,
   computerChoice: String,
   verdict: String,
-  showPauseScreen: Boolean,
+  isShowPauseScreen: Boolean,
 });
 </script>

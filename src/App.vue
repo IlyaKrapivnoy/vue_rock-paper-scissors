@@ -1,16 +1,16 @@
 <template>
   <Layout>
     <main class="container mx-auto p-6 flex-1">
-      <div v-if="!showPauseScreen">
+      <div v-if="!isShowPauseScreen">
         <MainScreen
           :choice="choice"
           :computerChoice="computerChoice"
           :verdict="verdict"
-          @showPause="showPauseScreen = true"
+          @showPause="showPauseScreen"
         />
       </div>
 
-      <div v-if="showPauseScreen" class="mt-12">
+      <div v-if="isShowPauseScreen" class="mt-12">
         <PauseScreen @onRemovePause="removePause" />
       </div>
     </main>
@@ -27,9 +27,13 @@ const choice = ref("");
 const computerChoice = ref("");
 const verdict = ref("");
 
-const showPauseScreen = ref(false);
+const isShowPauseScreen = ref(false);
+
+const showPauseScreen = () => {
+  isShowPauseScreen.value = true;
+};
 
 const removePause = () => {
-  showPauseScreen.value = false;
+  isShowPauseScreen.value = false;
 };
 </script>
