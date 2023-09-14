@@ -18,24 +18,11 @@
         </div>
 
         <div v-else>
-          <Message
-            :preText="`You picked`"
-            :mainText="choice"
-            :commonStyles="`text-3xl mb-4`"
-            :mainStyles="`text-pink-500`"
-          />
-          <Message
-            :preText="`The computer picked`"
-            :mainText="computerChoice"
-            :commonStyles="`text-3xl mb-4`"
-            :mainStyles="`text-green-500`"
-          />
-          <Message :mainText="verdict" :mainStyles="`text-6xl mb-12`" />
-
-          <ReusableButton
-            label="Reset"
-            :onClick="resetRound"
-            customClass="bg-pink-500 text-lg py-2 px-4 mt-12"
+          <ChoiceScreen
+            @onResetRound="resetRound"
+            :choice="choice"
+            :computerChoice="computerChoice"
+            :verdict="verdict"
           />
         </div>
 
@@ -83,6 +70,7 @@ import ReusableButton from "./components/main/ReusableButton.vue";
 import Layout from "./components/layout/Layout.vue";
 import Message from "./components/main/Message.vue";
 import { outcomes } from "./data/outcomes.js";
+import ChoiceScreen from "./components/main/ChoiceScreen.vue";
 
 const wins = ref(0);
 const draws = ref(0);
