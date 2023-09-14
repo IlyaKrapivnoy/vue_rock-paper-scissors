@@ -7,24 +7,13 @@
           class="flex items-center justify-center -mx-6"
         >
           <ReusableButton
-            :onClick="() => play('rock')"
-            customClass="bg-white rounded-full shadow-lg w-64 p-12 mx-6 transition-colors duration-300 hover:bg-pink-500"
-            img="./src/assets/RockIcon.svg"
-            alt="Rock"
-          />
-
-          <ReusableButton
-            :onClick="() => play('paper')"
-            customClass="bg-white rounded-full shadow-lg w-64 p-12 mx-6 transition-colors duration-300 hover:bg-green-500"
-            img="./src/assets/PaperIcon.svg"
-            alt="Paper"
-          />
-
-          <ReusableButton
-            :onClick="() => play('scissors')"
-            customClass="bg-white rounded-full shadow-lg w-64 p-12 mx-6 transition-colors duration-300 hover:bg-yellow-500"
-            img="./src/assets/ScissorsIcon.svg"
-            alt="Scissors"
+            v-for="(button, index) in playButtons"
+            :key="index"
+            :label="button.label"
+            :onClick="button.onClick"
+            :customClass="button.customClass"
+            :img="button.img"
+            :alt="button.alt"
           />
         </div>
 
@@ -102,6 +91,30 @@ const losses = ref(0);
 const choice = ref(null);
 const computerChoice = ref(null);
 const verdict = ref(null);
+
+const playButtons = [
+  {
+    onClick: () => play("rock"),
+    img: "./src/assets/RockIcon.svg",
+    alt: "Rock",
+    customClass:
+      "bg-white rounded-full shadow-lg w-64 p-12 mx-6 transition-colors duration-300 hover:bg-pink-500",
+  },
+  {
+    onClick: () => play("paper"),
+    img: "./src/assets/PaperIcon.svg",
+    alt: "Paper",
+    customClass:
+      "bg-white rounded-full shadow-lg w-64 p-12 mx-6 transition-colors duration-300 hover:bg-green-500",
+  },
+  {
+    onClick: () => play("scissors"),
+    img: "./src/assets/ScissorsIcon.svg",
+    alt: "Scissors",
+    customClass:
+      "bg-white rounded-full shadow-lg w-64 p-12 mx-6 transition-colors duration-300 hover:bg-yellow-500",
+  },
+];
 
 const play = (c) => {
   choice.value = c;
