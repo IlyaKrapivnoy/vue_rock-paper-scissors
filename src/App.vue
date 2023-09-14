@@ -50,15 +50,7 @@
       </div>
 
       <div v-if="showPauseScreen" class="mt-12">
-        <Message
-          :mainText="`This is the Pause Screen!`"
-          :mainStyles="`text-3xl`"
-        />
-        <ReusableButton
-          label="Play Again"
-          :onClick="removePause"
-          customClass="bg-green-500 text-lg py-2 px-4 mt-4"
-        />
+        <PauseScreen @onRemovePause="removePause" />
       </div>
     </main>
   </Layout>
@@ -70,7 +62,8 @@ import ReusableButton from "./components/main/ReusableButton.vue";
 import Layout from "./components/layout/Layout.vue";
 import Message from "./components/main/Message.vue";
 import { outcomes } from "./data/outcomes.js";
-import ChoiceScreen from "./components/main/ChoiceScreen.vue";
+import ChoiceScreen from "./components/screens/ChoiceScreen.vue";
+import PauseScreen from "./components/screens/PauseScreen.vue";
 
 const wins = ref(0);
 const draws = ref(0);

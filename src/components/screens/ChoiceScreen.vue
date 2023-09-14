@@ -25,8 +25,8 @@
 </template>
 
 <script setup>
-import ReusableButton from "./ReusableButton.vue";
-import Message from "./Message.vue";
+import ReusableButton from "../main/ReusableButton.vue";
+import Message from "../main/Message.vue";
 
 const emit = defineEmits(["onResetRound"]);
 
