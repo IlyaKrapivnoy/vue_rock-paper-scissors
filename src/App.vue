@@ -76,9 +76,9 @@ const wins = ref(0);
 const draws = ref(0);
 const losses = ref(0);
 
-const choice = ref(null);
-const computerChoice = ref(null);
-const verdict = ref(null);
+const choice = ref("");
+const computerChoice = ref("");
+const verdict = ref("");
 
 const playButtons = [
   {
@@ -133,9 +133,9 @@ const winPercentage = computed(() => {
 });
 
 const SaveGame = () => {
-  localStorage.setItem("wins", wins.value);
-  localStorage.setItem("draws", draws.value);
-  localStorage.setItem("losses", losses.value);
+  localStorage.setItem("wins", wins.value.toString());
+  localStorage.setItem("draws", draws.value.toString());
+  localStorage.setItem("losses", losses.value.toString());
 };
 
 const LoadGame = () => {
