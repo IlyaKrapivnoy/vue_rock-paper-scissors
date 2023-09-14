@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="choice === null" class="flex items-center justify-center -mx-6">
+    <div v-if="!choice" class="flex items-center justify-center -mx-6">
       <ReusableButton
         v-for="(button, index) in playButtons"
         :key="index"
@@ -125,9 +125,9 @@ const LoadGame = () => {
 };
 
 const resetRound = () => {
-  choice.value = null;
-  computerChoice.value = null;
-  verdict.value = null;
+  choice.value = "";
+  computerChoice.value = "";
+  verdict.value = "";
 };
 
 const startOver = () => {

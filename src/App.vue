@@ -28,6 +28,7 @@ const computerChoice = ref("");
 const verdict = ref("");
 
 const showPauseScreen = ref(false);
+
 const removePause = () => {
   showPauseScreen.value = false;
 };
