@@ -6,6 +6,7 @@
           :choice="choice"
           :computerChoice="computerChoice"
           :verdict="verdict"
+          @showPause="showPauseScreen = true"
         />
       </div>
 
